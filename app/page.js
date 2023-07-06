@@ -1,95 +1,98 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
 
-export default function Home() {
+import { HeroSection } from '@/components'
+import { BrandsSection } from '@/components/BrandsSection'
+import { ContactSection } from '@/components/ContactSection'
+import { MissionsSection } from '@/components/MissionsSection'
+import { USPsSection } from '@/components/USPsSection'
+import { Box, Container, Typography, Grid, Button } from '@mui/material'
+
+export default function HomePage() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+    <main>
+      <HeroSection />
+      <BrandsSection />
+      <MissionsSection />
+      <USPsSection />
+      <ContactSection />
+      {/* <TestimonialsSection /> */}
     </main>
+  )
+}
+
+const testimonials = [
+  {
+    id: 1,
+    author: {
+      name: 'John Doe',
+      avatarUrl: '/path/to/avatar1.png',
+    },
+    title: 'Great Agency!',
+    text: 'MA Agency helped me boost my business and reach a wider audience through social media advertising. Highly recommended!',
+  },
+  {
+    id: 2,
+    author: {
+      name: 'Jane Smith',
+      avatarUrl: '/path/to/avatar2.png',
+    },
+    title: 'Excellent Results',
+    text: "I've been working with MA Agency for several months now and the results have been outstanding. They truly understand social media marketing.",
+  },
+  {
+    id: 3,
+    author: {
+      name: 'Michael Johnson',
+      avatarUrl: '/path/to/avatar3.png',
+    },
+    title: 'Impressive Strategy',
+    text: 'MA Agency developed a comprehensive social media strategy that aligned perfectly with my business goals. I saw a significant increase in engagement and conversions.',
+  },
+  {
+    id: 4,
+    author: {
+      name: 'Sarah Thompson',
+      avatarUrl: '/path/to/avatar4.png',
+    },
+    title: 'Professional and Reliable',
+    text: 'I have had a great experience working with MA Agency. They are highly professional, reliable, and always deliver exceptional results.',
+  },
+  {
+    id: 5,
+    author: {
+      name: 'David Wilson',
+      avatarUrl: '/path/to/avatar5.png',
+    },
+    title: 'Outstanding Service',
+    text: 'MA Agency provides an outstanding level of service. They are responsive, attentive to detail, and go above and beyond to ensure client satisfaction.',
+  },
+]
+
+const TestimonialsSection = () => {
+  return (
+    <Box py={8} bgcolor="primary.main" color="white">
+      <Container maxWidth="lg">
+        <Typography variant="h4" align="center" mb={4}>
+          Testimonials
+        </Typography>
+        <div>
+          {testimonials.map((testimonial) => (
+            <Testimonial key={testimonial.id} {...testimonial} />
+          ))}
+        </div>
+      </Container>
+    </Box>
+  )
+}
+
+const Testimonial = ({ id, author, title, text }) => {
+  return (
+    <Box key={id} my={4}>
+      <img src={author.avatarUrl} alt={author.name} />
+      <Typography variant="h6" mb={1}>
+        {title}
+      </Typography>
+      <Typography variant="body1">{text}</Typography>
+    </Box>
   )
 }
