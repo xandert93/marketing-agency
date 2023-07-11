@@ -12,6 +12,8 @@ import {
   IconButton,
 } from '@mui/material'
 import { MenuIcon } from '.'
+import { Link } from './Link'
+import { ContainedButton } from './ContainedButton'
 
 export const Header = () => {
   const isScrolledDown = useScrollTrigger({ threshold: 10 })
@@ -42,14 +44,46 @@ export const Header = () => {
   )
 }
 
-const links = ['What We Do', 'Case Studies', 'About Us', 'Blog', 'Insights', 'Book a Call']
+const links = ['What We Do', 'Case Studies', 'About Us', 'Blog', 'Insights']
+
+const linkPadding = '8px'
+
+const styles = {
+  position: 'relative',
+
+  '::after': {
+    content: '""',
+    height: 2,
+    borderRadius: 2,
+    position: 'absolute',
+    bottom: 0,
+    left: linkPadding,
+    right: linkPadding,
+    backgroundColor: 'primary.main',
+    transform: 'scaleX(0)',
+    transition: 'transform 0.3s ease-in-out',
+  },
+
+  ':hover::after': {
+    transform: 'initial',
+  },
+}
 
 const HeaderNav = () => {
   return (
-    <Grid component="nav" container columnGap={7} justifyContent="flex-end">
+    <Grid component="nav" container columnGap={7} justifyContent="flex-end" alignItems="center">
       {links.map((text) => (
-        <a key={text} href="/#" children={text} />
+        <Link
+          key={text}
+          sx={styles}
+          p={linkPadding}
+          href="/#"
+          children={text}
+          underline="none"
+          color="text.primary"
+        />
       ))}
+      <ContainedButton children="Book a Call" />
     </Grid>
   )
 }

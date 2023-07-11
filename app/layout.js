@@ -1,3 +1,5 @@
+import '@/styles/global.css'
+
 import { ThemeProvider } from './ThemeProvider'
 
 import { Header, Footer } from '@/components'
@@ -15,7 +17,7 @@ export default function RootLayout({ children }) {
         <body>
           <Header />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </body>
       </ThemeProvider>
     </html>

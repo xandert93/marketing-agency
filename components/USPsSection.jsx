@@ -2,6 +2,8 @@ import { Box, Grid, Typography } from '@mui/material'
 import { Section } from './Section'
 import Image from 'next/image'
 
+import { motion } from 'framer-motion'
+
 const usps = [
   {
     id: 1,
@@ -44,7 +46,7 @@ export const USPsSection = () => {
         children="What makes us different to other Social Media Agencies..."
         fontWeight={600}
       />
-      <Grid container spacing={1}>
+      <Grid container spacing={4}>
         {usps.map((usp) => (
           <Grid key={usp.id} item xs={12} md={6} lg={4}>
             <USP {...usp} />
@@ -57,10 +59,16 @@ export const USPsSection = () => {
 
 const USP = ({ imageUrl, title, body }) => {
   return (
-    <Box bgcolor="primary.main">
-      <Image src={imageUrl} height={40} width={40} />
-      <Typography component="h3" fontWeight={600} children={title} />
-      <Typography children={body} />
-    </Box>
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true, amount: 0.75 }}>
+      <Grid container direction="column" rowGap={2} bgcolor="primary.main" p={4} borderRadius={2}>
+        <Image src={imageUrl} height={40} width={40} style={{ display: 'block' }} />
+        <Typography component="h3" fontWeight={600} children={title} />
+        <Typography children={body} />
+      </Grid>
+    </motion.div>
   )
 }

@@ -1,6 +1,11 @@
 import Image from 'next/image'
 import { Section } from './Section'
 import { Box, Button, Grid, Typography } from '@mui/material'
+import { CoverImg } from './CoverImg'
+import { Img } from './Img'
+
+import { motion } from 'framer-motion'
+import { ContainedButton } from './ContainedButton'
 
 const missions = [
   {
@@ -49,27 +54,47 @@ const missions = [
 
 export const MissionsSection = () => {
   return (
-    <Section maxWidth="xl" sx={{ bgcolor: 'rgb(249, 249, 249)' }}>
+    <Section maxWidth={false} sx={{ bgcolor: 'rgb(249, 249, 249)' }}>
       {missions.map((mission, index) => {
         const isEven = index % 2 === 0
         return (
-          <Mission key={mission.id} {...mission} mdDirection={isEven ? 'row' : 'row-reverse'} />
+          <Mission key={mission.id} {...mission} minMdDirection={isEven ? 'row' : 'row-reverse'} />
         )
       })}
     </Section>
   )
 }
 
-const Mission = ({ mdDirection, title, bodies, imageUrl, actionText }) => {
+const Mission = ({ minMdDirection, title, bodies, imageUrl, actionText }) => {
   return (
-    <Grid container direction={{ xs: 'column-reverse', md: mdDirection }}>
-      <Grid item xs={12} md={6}>
-        <MissionDetail {...{ title, bodies, actionText }} />
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true, amount: 0.75 }}>
+      <Grid
+        container
+        direction={{ xs: 'column-reverse', md: minMdDirection }}
+        alignItems="center"
+        spacing={4}
+        p={4}>
+        <Grid item xs={12} md={6}>
+          <MissionDetail {...{ title, bodies, actionText }} />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Img
+            src={imageUrl}
+            sx={{
+              aspectRatio: '1/1',
+              width: '100%',
+              objectFit: 'cover',
+              borderRadius: 1,
+              display: 'block',
+            }}
+          />
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={6}>
-        <Image src={imageUrl} height={150} width={150} />
-      </Grid>
-    </Grid>
+    </motion.div>
   )
 }
 
@@ -82,7 +107,7 @@ const MissionDetail = ({ title, bodies, actionText }) => {
           <Typography key={index} children={body} />
         ))}
       </Grid>
-      <Button variant="contained" children={actionText} />
+      <ContainedButton children={actionText} />
     </Grid>
   )
 }

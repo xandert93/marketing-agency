@@ -4,6 +4,7 @@ import { HeroSection } from '@/components'
 import { BrandsSection } from '@/components/BrandsSection'
 import { ContactSection } from '@/components/ContactSection'
 import { MissionsSection } from '@/components/MissionsSection'
+import { ThinkBigSection } from '@/components/ThinkBigSection'
 import { USPsSection } from '@/components/USPsSection'
 import { Box, Container, Typography, Grid, Button } from '@mui/material'
 
@@ -12,10 +13,13 @@ export default function HomePage() {
     <main>
       <HeroSection />
       <BrandsSection />
+
       <MissionsSection />
       <USPsSection />
+
+      <ThinkBigSection />
       <ContactSection />
-      {/* <TestimonialsSection /> */}
+      <TestimonialsSection />
     </main>
   )
 }

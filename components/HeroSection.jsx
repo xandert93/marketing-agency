@@ -4,6 +4,7 @@ import { Box, Button, Grid, Typography } from '@mui/material'
 import { Span } from './Span'
 import Image from 'next/image'
 import { Section } from './Section'
+import { ContainedButton } from './ContainedButton'
 
 export const HeroSection = () => {
   return (
@@ -44,7 +45,7 @@ const LHSText = () => {
       <Span
         sx={{
           position: 'relative',
-          ':after': {
+          '::after': {
             content: '""',
             position: 'absolute',
             bottom: -24,
@@ -67,19 +68,20 @@ const LHSActions = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
-        <Button
+        <ContainedButton
           variant="contained"
-          textTransform="initial"
+          // textTransform="initial"
           fullWidth
           disableElevation
-          sx={{ borderRadius: 10, px: 4, py: 1.5 }}>
+          // sx={{ borderRadius: 10,  }}
+        >
           Book a Call
-        </Button>
+        </ContainedButton>
       </Grid>
       <Grid item xs={12} md={6}>
         <Button
           variant="outlined"
-          textTransform="initial"
+          // textTransform="initial"
           fullWidth
           sx={{ borderRadius: 10, px: 4, py: 1.5 }}>
           Find out More
